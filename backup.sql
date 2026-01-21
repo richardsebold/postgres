@@ -1,31 +1,104 @@
---
--- PostgreSQL database dump
---
+integer
+real 
+serial
+numeric
 
-\restrict jFLL02lZgXIhJIB2aJmcd5kg8AiiKM27d1yajOMv4ImIGcmYr71byGczn5mlsnU
+varchar(n)
+char(n)
+text
 
--- Dumped from database version 18.1
--- Dumped by pg_dump version 18.1
+boolean
 
--- Started on 2026-01-19 22:33:25
+date
+time
+timestamp
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET transaction_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
+CREATE TABLE ALUNO (
+	ID SERIAL,
+	nome VARCHAR(255),
+	cpf CHAR(11),
+	observacao TEXT,
+	idade INTEGER,
+	dinheiro NUMERIC (10,2),
+	altura REAL,
+	ativo BOOLEAN,
+	data_nascimento DATE,
+	hora_aula TIME,
+	matriculado_em TIMESTAMP
+)
 
--- Completed on 2026-01-19 22:33:26
+select * from aluno; 
 
---
--- PostgreSQL database dump complete
---
+INSERT INTO aluno (
+	nome,
+	cpf,
+	observacao,
+	idade,
+	dinheiro,
+	altura,
+	ativo,
+	data_nascimento,
+	hora_aula,
+	matriculado_em
+) 
+VALUES (
+	'Diego',
+	'12345678911',
+	'Lorem ipsum lfsdkdfksdfkfdkkdfsksfdkfdkfdskfsdk',
+	19,
+	100.52,
+	1.78,
+	TRUE,
+	'2006-11-21',
+	'17:20:00',
+	'2020-02-02 12:20:00'
+)
 
-\unrestrict jFLL02lZgXIhJIB2aJmcd5kg8AiiKM27d1yajOMv4ImIGcmYr71byGczn5mlsnU
+SELECT * FROM aluno WHERE nome = 'Richard';
+
+DELETE FROM aluno WHERE nome = 'Richard';
+
+select * from aluno; 
+
+select 
+	nome AS "Nome do Aluno", 
+	idade, 
+	matriculado_em AS quando_se_matriculou
+FROM aluno; 
+
+
+INSERT INTO aluno (nome) VALUES ('Bias');
+INSERT INTO aluno (nome) VALUES ('Bea');
+INSERT INTO aluno (nome) VALUES ('Broa');
+INSERT INTO aluno (nome) VALUES ('Ana');
+
+
+SELECT *
+	FROM aluno
+	WHERE nome LIKE 'B%'
+	
+SELECT *
+	FROM aluno
+	WHERE nome LIKE '%a'
+	
+SELECT *
+	FROM aluno
+	WHERE nome LIKE '%a%'
+	
+SELECT *
+	FROM aluno
+	WHERE nome LIKE '_ias'
+	
+SELECT *
+	FROM aluno
+	WHERE nome NOT LIKE '_ias'
+	
+SELECT *
+	FROM aluno
+	WHERE nome NOT LIKE '_ias'
+	
+SELECT *
+	FROM aluno
+	WHERE nome <> 'Bias'
+
 
